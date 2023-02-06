@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+// import React from 'react';
 import './App.css';
-
+import { useEffect, useRef, useState } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 function App() {
+  const [token, setToken] = useState<any | null>(null);
+  if (token)
+    console.log(`hCaptcha Token: ${token}`);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form>
+        <HCaptcha
+          sitekey="a560783c-3657-4685-942d-a32e58b3620d"
+          onVerify={setToken}
+        />
+      </form>
     </div>
   );
 }
